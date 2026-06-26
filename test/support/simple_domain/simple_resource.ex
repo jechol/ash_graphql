@@ -8,4 +8,12 @@ defmodule AshGraphql.Test.SimpleResource do
   use Ash.Resource,
     extensions: [AshGraphql.Resource],
     domain: AshGraphql.Test.SimpleDomain
+
+  resource do
+    require_primary_key?(false)
+  end
+
+  actions do
+    defaults([:read])
+  end
 end

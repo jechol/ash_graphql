@@ -10,7 +10,6 @@ defmodule GF.Member do
     extensions: [AshGraphql.Resource],
     authorizers: [Ash.Policy.Authorizer]
 
-  require Ash.Query
   require Logger
 
   alias GF.ActiveMemberPolicy

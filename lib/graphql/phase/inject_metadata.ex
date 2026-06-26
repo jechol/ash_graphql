@@ -99,6 +99,9 @@ defmodule AshGraphql.Phase.InjectMetadata do
     {nil, nil}
   end
 
+  defp build_metadata(false, _info), do: {nil, nil}
+  defp build_metadata(nil, _info), do: {nil, nil}
+
   defp build_metadata(key, info) when is_atom(key) do
     {key, AshGraphql.DefaultMetadataHandler.build_metadata(info)}
   end
@@ -147,9 +150,6 @@ defmodule AshGraphql.Phase.InjectMetadata do
 
       {key, nil}
   end
-
-  defp build_metadata(false, _info), do: {nil, nil}
-  defp build_metadata(nil, _info), do: {nil, nil}
 
   defp build_metadata(invalid_config, _info) do
     Logger.warning(

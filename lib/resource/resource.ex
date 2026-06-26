@@ -3016,7 +3016,7 @@ defmodule AshGraphql.Resource do
 
   defp on_lookup_fields(opts, relationship, schema) do
     case ManagedRelationshipHelpers.on_lookup_update_action(opts, relationship) do
-      {:destination, nil} ->
+      nil ->
         :none
 
       {:destination, action} ->
@@ -3030,9 +3030,6 @@ defmodule AshGraphql.Resource do
         |> Enum.reject(fn {_, _, field} ->
           field.identifier == relationship.destination_attribute
         end)
-
-      {:join, nil, _} ->
-        :none
 
       {:join, action, fields} ->
         action = Ash.Resource.Info.action(relationship.through, action)
@@ -3053,9 +3050,6 @@ defmodule AshGraphql.Resource do
             relationship.source_attribute_on_join_resource
           ]
         end)
-
-      nil ->
-        :none
     end
   end
 
